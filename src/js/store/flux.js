@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 						full_name: name,
 						email: email,
-						agenda_slug: agenda,
+						agenda_slug: "my_super_agenda",
 						address: address,
 						phone: phone
 					}),
@@ -29,6 +29,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => console.log({ contacts: data }))
 					.catch(error => console.log(error));
 			}
+
+					
+			
 		}
 	};
 };
