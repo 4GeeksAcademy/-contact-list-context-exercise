@@ -43,7 +43,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => console.log(data))
 					.catch(error => console.log(error));
-			}
+			},
+
+			updateContact: (name, email, phone, address) =>{}
 		}
 	};
 };
