@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log(error));
 			},
 
-			createContact: (name, email, phone, address, agenda) => {
+			createContact: (name, email, phone, address) => {
 				fetch("https://playground.4geeks.com/apis/fake/contact/", {
 					method: "POST",
 					body: JSON.stringify({
@@ -34,7 +34,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("https://playground.4geeks.com/apis/fake/contact/" + id, {
 					method: "DELETE"
 				})
-					.then(response => response.json())
+					.then(response => {
+						console.log(response.status);
+						if (response.status === 201) {
+							getActions().getAgenda();
+						}
+						return response.json();
+					})
 					.then(data => console.log(data))
 					.catch(error => console.log(error));
 			}

@@ -17,7 +17,7 @@ export const AddContact = () => {
 	const { store, actions } = useContext(Context);
 
 	const newContact = e => {
-		e.preventDefault(); // Evita la recarga predeterminada de la página
+		e.preventDefault();
 		actions.createContact(name, email, phone, address, agenda);
 	};
 

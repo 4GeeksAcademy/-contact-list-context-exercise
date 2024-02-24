@@ -10,7 +10,10 @@ export const Modal = props => {
 
 	const { store, actions } = useContext(Context);
 
-	// function eraseContact() {}
+	function eraseContact() {
+		actions.deleteContact(props.id);
+		props.onClose();
+	}
 
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
@@ -38,11 +41,7 @@ export const Modal = props => {
 						<button type="button" className="btn btn-primary">
 							Oh no!
 						</button>
-						<button
-							type="button"
-							className="btn btn-secondary"
-							data-dismiss="modal"
-							onClick={() => actions.deleteContact()}>
+						<button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={eraseContact}>
 							Do it!
 						</button>
 					</div>
