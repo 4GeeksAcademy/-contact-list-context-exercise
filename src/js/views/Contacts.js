@@ -4,6 +4,7 @@ import { Context } from "../store/appContext.js";
 
 import { ContactCard } from "../component/ContactCard.js";
 import { Modal } from "../component/Modal";
+import EditModal from "../component/EditModal.js";
 
 export const Contacts = () => {
 	const [state, setState] = useState({
@@ -38,12 +39,19 @@ export const Contacts = () => {
 								infoContact={item}
 								key={item.id}
 								onDelete={() => setState({ showModal: true, idToDelete: item.id })}
+								onEdit={() => setState({ showModal: true })}
 							/>
 						))}
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} id={state.idToDelete} onClose={() => setState({ showModal: false })} />
+			<Modal
+				show={state.showModal}
+				id={state.idToDelete}
+				edit={state.editContact}
+				onClose={() => setState({ showModal: false })}
+			/>
+			<EditModal show={state.showModal} edit={state.editContact} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
 };

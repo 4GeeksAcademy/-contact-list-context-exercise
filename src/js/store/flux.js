@@ -45,7 +45,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log(error));
 			},
 
-			updateContact: (name, email, phone, address) =>{}
+			// updateContact: (name, email, phone, address, id) => {
+			// 	fetch("https://playground.4geeks.com/apis/fake/contact/" + id, {
+			// 		method: "PUT",
+			// 		body: JSON.stringify({
+			// 			full_name: name,
+			// 			email: email,
+			// 			agenda_slug: "my_super_agenda",
+			// 			address: address,
+			// 			phone: phone
+			// 		}),
+			// 		headers: {
+			// 			"Content-type": "application/json"
+			// 		}
+			// 	})
+			// 		.then(response => response.json())
+			// 		.then(data => console.log({ contacts: data }))
+			// 		.catch(error => console.log(error));
+			// }
+
+			updateContact: async (name, email, phone, address, id) => {
+				try {
+					const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${id}`, {
+						method: "PUT",
+						body: JSON.stringify({
+							full_name: name,
+							email: email,
+							agenda_slug: "my_super_agenda",
+							address: address,
+							phone: phone
+						}),
+						headers: {
+							"Content-type": "application/json"
+						}
+					});
+
+					if (!response.ok) {
+						throw new Error(`Error updating contact: ${response.statusText}`);
+					}
+
+					const data = await response.json();
+					console.log({ contacts: data });
+
+					// Aquí puedes actualizar el estado de React si es necesario
+				} catch (error) {
+					console.error(error);
+					// Puedes manejar el error de manera más específica según tus necesidades
+				}
+			}
 		}
 	};
 };
