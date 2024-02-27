@@ -8,15 +8,15 @@ export const EditModal = props => {
 		//initialize state here
 	});
 
-	const [editName, setEditName] = useState("");
-	const [editEmail, setEditEmail] = useState("");
-	const [editPhone, setEditPhone] = useState("");
-	const [editAddress, setEditAddress] = useState("");
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [address, setAddress] = useState("");
 
 	const { store, actions } = useContext(Context);
 
 	function editContact() {
-		actions.updateContact(editName, editEmail, editPhone, editAddress);
+		actions.updateContact(name, email, phone, address, props.id);
 		props.onClose();
 	}
 
@@ -46,8 +46,8 @@ export const EditModal = props => {
 								type="text"
 								className="form-control"
 								placeholder="Full Name"
-								onChange={e => setEditName(e.target.value)}
-								value={editName}
+								onChange={e => setName(e.target.value)}
+								value={name}
 							/>
 						</div>
 						<div className="form-group">
@@ -56,8 +56,8 @@ export const EditModal = props => {
 								type="email"
 								className="form-control"
 								placeholder="Enter email"
-								onChange={e => setEditEmail(e.target.value)}
-								value={editEmail}
+								onChange={e => setEmail(e.target.value)}
+								value={email}
 							/>
 						</div>
 						<div className="form-group">
@@ -66,8 +66,8 @@ export const EditModal = props => {
 								type="phone"
 								className="form-control"
 								placeholder="Enter phone"
-								onChange={e => setEditPhone(e.target.value)}
-								value={editPhone}
+								onChange={e => setPhone(e.target.value)}
+								value={phone}
 							/>
 						</div>
 						<div className="form-group">
@@ -76,13 +76,13 @@ export const EditModal = props => {
 								type="text"
 								className="form-control"
 								placeholder="Enter address"
-								onChange={e => setEditAddress(e.target.value)}
-								value={editAddress}
+								onChange={e => setAddress(e.target.value)}
+								value={address}
 							/>
 						</div>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn btn-primary" onClick={() => props.onClose()}>
 							Back to contacts
 						</button>
 						<button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={editContact}>
