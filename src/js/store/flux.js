@@ -1,8 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			contacts: [],
-			agendas: []
+			contacts: []
 		},
 		actions: {
 			getAgenda: () => {
@@ -69,13 +68,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 
 					.then(data => console.log(data))
-					.catch(error => console.log(error));
-			},
-
-			getAllAgendas: () => {
-				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/")
-					.then(response => response.json())
-					.then(data => setStore({ agendas: data }))
 					.catch(error => console.log(error));
 			}
 		}

@@ -11,14 +11,10 @@ export const Contacts = () => {
 		showModal: false,
 		showEditModal: false,
 		idToDelete: null,
-		idToEdit: null,
-		showSelectedAgenda: false,
-		showSelectAgendaModal: false,
-		agendaOptions: []
+		idToEdit: null
 	});
 
 	const { store, actions } = useContext(Context);
-	const [selectedAgenda, setSelectedAgenda] = useState("defaultAgenda");
 
 	useEffect(() => {
 		actions.getAgenda();
@@ -34,16 +30,8 @@ export const Contacts = () => {
 						Add new contact
 					</Link>
 				</p>
-				<button className="btn btn-primary ml-2" onClick={() => setState({ showSelectAgendaModal: true })}>
-					Select Agenda
-				</button>
-
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						{/* <ContactCard onDelete={() => setState({ showModal: true })} />
-						<ContactCard />
-						<ContactCard />
-						<ContactCard /> */}
 						{store.contacts.map((item, index) => (
 							<ContactCard
 								infoContact={item}
@@ -61,33 +49,6 @@ export const Contacts = () => {
 				id={state.idToEdit}
 				onClose={() => setState({ showEditModal: false })}
 			/>
-			<Modal show={state.showSelectAgendaModal} onClose={() => setState({ showSelectAgendaModal: false })}>
-				<h2>Select Agenda</h2>
-				<form>
-					<label htmlFor="agendaSelection">Choose an agenda:</label>
-					<select
-						id="agendaSelection"
-						value={state.selectedAgenda}
-						onChange={e => setState({ selectedAgenda: e.target.value })}
-						className="form-control">
-						{state.agendaOptions.map(option => (
-							<option key={option.id} value={option.value}>
-								{option.label}
-							</option>
-						))}
-					</select>
-					<button
-						type="button"
-						className="btn btn-primary mt-3"
-						onClick={() => {
-							setState({ showSelectAgendaModal: false });
-							// Puedes realizar acciones adicionales según la agenda seleccionada
-							console.log("Selected Agenda:", state.selectedAgenda);
-						}}>
-						Save Selection
-					</button>
-				</form>
-			</Modal>
 		</div>
 	);
 };
